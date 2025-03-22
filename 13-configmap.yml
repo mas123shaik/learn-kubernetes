@@ -10,7 +10,7 @@ data:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: envar-demo-cm
+  name: envvar-demo-cm
   labels:
     purpose: demonstrate-envars
 spec:
@@ -32,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: enfrom-demo-cm
+  name: envfrom-demo-cm
   labels:
     purpose: demonstrate-envars
 spec:
