@@ -33,11 +33,11 @@ spec:
         component: frontend
     spec:
       containers:
-      - name: frontend
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
-        envFrom:
-          - configMapRef:
-              name: frontend
+        - name: frontend
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+          envFrom:
+            - configMapRef:
+                name: frontend
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -64,11 +64,11 @@ spec:
         component: catalogue
     spec:
       containers:
-      - name: catalogue
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
-        envFrom:
-          - configMapRef:
-              name: catalogue
+        - name: catalogue
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
+          envFrom:
+            - configMapRef:
+                name: catalogue
 
 ---
 apiVersion: v1
@@ -97,11 +97,11 @@ spec:
         component: cart
     spec:
       containers:
-      - name: cart
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
-        envFrom:
-          - configMapRef:
-              name: cart
+        - name: cart
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+          envFrom:
+            - configMapRef:
+                name: cart
 
 ---
 apiVersion: v1
@@ -129,11 +129,11 @@ spec:
         component: shipping
     spec:
       containers:
-      - name: shipping
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
-        envFrom:
-          - configMapRef:
-              name: shipping
+        - name: shipping
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+          envFrom:
+            - configMapRef:
+                name: shipping
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -165,11 +165,11 @@ spec:
         component: payment
     spec:
       containers:
-      - name: payment
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
-        envFrom:
-          - configMapRef:
-              name: payment
+        - name: payment
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
+          envFrom:
+            - configMapRef:
+                name: payment
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -197,11 +197,11 @@ spec:
         component: user
     spec:
       containers:
-      - name: payment
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
-        envFrom:
-          - configMapRef:
-              name: user
+        - name: payment
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+          envFrom:
+            - configMapRef:
+                name: user
 ---
 apiVersion: v1
 kind: Service
@@ -288,17 +288,17 @@ spec:
   template:
     spec:
       containers:
-      - name: schema-load
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-        env:
-          - name: DB_TYPE
-            value: mongo
-          - name: APP_GIT_URL
-            value: https://github.com/roboshop-devops-project-v3/catalogue
-          - name: DB_HOST
-            value: mongodb-dev.masdevops.online
-          - name: SCHEMA_FILE
-            value: db/master-data.js
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mongo
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/catalogue
+            - name: DB_HOST
+              value: mongodb-dev.masdevops.online
+            - name: SCHEMA_FILE
+              value: db/master-data.js
       restartPolicy: Never
   backoffLimit: 4
 
@@ -311,21 +311,21 @@ spec:
   template:
     spec:
       containers:
-      - name: app-user
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-        env:
-          - name: DB_TYPE
-            value: mysql
-          - name: APP_GIT_URL
-            value: https://github.com/roboshop-devops-project-v3/shipping
-          - name: DB_HOST
-            value: mysql-dev.masdevops.online
-          - name: SCHEMA_FILE
-            value: db/app-user.sql
-          - name: DB_USER
-            value: root
-          - name: DB_PASS
-            value: RoboShop@1
+        - name: app-user
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.masdevops.online
+            - name: SCHEMA_FILE
+              value: db/app-user.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
       restartPolicy: Never
   backoffLimit: 4
 
@@ -338,21 +338,21 @@ spec:
   template:
     spec:
       containers:
-      - name: schema-load
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-        env:
-          - name: DB_TYPE
-            value: mysql
-          - name: APP_GIT_URL
-            value: https://github.com/roboshop-devops-project-v3/shipping
-          - name: DB_HOST
-            value: mysql-dev.masdevops.online
-          - name: SCHEMA_FILE
-            value: db/schema.sql
-          - name: DB_USER
-            value: root
-          - name: DB_PASS
-            value: RoboShop@1
+        - name: schema-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.masdevops.online
+            - name: SCHEMA_FILE
+              value: db/schema.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
       restartPolicy: Never
   backoffLimit: 4
 
@@ -365,21 +365,21 @@ spec:
   template:
     spec:
       containers:
-      - name: master-data
-        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-        env:
-          - name: DB_TYPE
-            value: mysql
-          - name: APP_GIT_URL
-            value: https://github.com/roboshop-devops-project-v3/shipping
-          - name: DB_HOST
-            value: mysql-dev.masdevops.online
-          - name: SCHEMA_FILE
-            value: db/master-data.sql
-          - name: DB_USER
-            value: root
-          - name: DB_PASS
-            value: RoboShop@1
+        - name: master-data
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: DB_TYPE
+              value: mysql
+            - name: APP_GIT_URL
+              value: https://github.com/roboshop-devops-project-v3/shipping
+            - name: DB_HOST
+              value: mysql-dev.masdevops.online
+            - name: SCHEMA_FILE
+              value: db/master-data.sql
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              value: RoboShop@1
       restartPolicy: Never
   backoffLimit: 4
 
